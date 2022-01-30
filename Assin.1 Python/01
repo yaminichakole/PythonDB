@@ -1,0 +1,25 @@
+#Write a program to take input and add new books to the DB table
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com'
+,user='ubsi39iznkrueguk',password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+try:
+    bc=int(input("Enter Bookcode : "))
+    bn=input("Enter Bookname : ")
+    cat=input("Enter Category : ")
+    aut=input("Enter Author : ")
+    pub=int(input("Enter Publication : "))
+    edi=input("Enter edition : ")
+    price=float(input("Enter Price : "))
+
+    curs.execute("insert into books values(%d,'%s','%s','%s',%d,'%s',%.2f)"%(bc,bn,cat,aut,pub,edi,price))
+    con.commit()
+    print("Data inserted sucessfuly!!")
+
+except Exception as e:
+    print('Error : ',e)
+
+con.close()

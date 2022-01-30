@@ -1,0 +1,15 @@
+#Write a program to show list of all books
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+curs.execute('select * from books')
+data=curs.fetchall()
+
+for rec in data:
+    print(list(rec))
+
+con.close()

@@ -1,0 +1,19 @@
+#Write a program to accept author and publication, display list of books of the author-publication combination
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+aut=input("Enter Author :")
+pub=int(input("Enter publication : "))
+
+curs.execute("select * from books where category='%s' and publication=%d" %(aut,pub))
+data=curs.fetchall()
+print(data)
+
+for rec in data:
+    print(list(rec))
+
+con.close()

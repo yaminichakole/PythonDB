@@ -1,0 +1,14 @@
+#Write a program to accept category like "romance" and display list of books of that category
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+cat=int(input("Enter category : "))
+curs.execute("select * from books where category = %s" %cat)
+data=curs.fetchone()
+print(data)
+    
+con.close()

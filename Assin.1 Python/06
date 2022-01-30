@@ -1,0 +1,42 @@
+#Write a program to accept bookcode, display the book data and ask "Do you want to delete?" if "yes" delete the book from the table
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+try:
+    bc=int(input("Enter Bookcode : "))
+    curs.execute("select * from books where bookcode = %d" %bc)
+    data=curs.fetchone()
+    print(data)
+
+    if data:
+        curs.execute("do you want to delete?")
+        con.commit()
+        print("yes")
+    else:
+        print ("delete successfull")
+
+except:
+    print('Error')
+
+con.close()
+
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+
+
+
+

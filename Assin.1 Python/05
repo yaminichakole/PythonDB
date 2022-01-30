@@ -1,0 +1,27 @@
+#Write a program to accept bookcode & new price and update book data in the table if found else display "book does not exist"
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+try:
+    bc=int(input("Enter Bookcode : "))
+    curs.execute("select * from books where bookcode = %d" %bc)
+    data=curs.fetchone()
+    
+
+    if data:
+        np=float(input("Enter new price : "))
+        curs.execute("update books set price=%.2f where bookcode = %d" %(np,bc))
+        con.commit()
+        print("Price Updated Successfully!!")
+
+    else:
+        print("Invalid Input")
+
+except:
+    print("Book does not exist")
+
+con.close()

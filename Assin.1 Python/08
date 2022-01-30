@@ -1,0 +1,19 @@
+#Write a program to accept bookcode and review, update the record with the review contents
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+bc=int(input("Enter Bookcode : "))
+curs.execute("select * from books where bookcode = %d" %bc)
+data=curs.fetchone()
+    
+rec=int(input("Enter record : "))
+curs.execute("update books set record where bookcode = %d" %(rec,bc))
+con.commit()
+print("data")
+
+con.close()
+

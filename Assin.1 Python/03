@@ -1,0 +1,24 @@
+#Write a program to accept bookcode, search book in the table, show the book details if found else display "not found" message
+
+import pymysql
+
+con=pymysql.connect(host='bvdqt0vpub8pj2iqouud-mysql.services.clever-cloud.com',user='ubsi39iznkrueguk',
+password='arc8x0JG0M0u0VAaLaCO',database='bvdqt0vpub8pj2iqouud')
+curs=con.cursor()
+
+
+try:
+    bc=int(input("Enter Bookcode : "))
+    curs.execute("select * from books where bookcode = %d" %bc)
+    data=curs.fetchone()
+    print(data)
+    
+except:
+    print("not found")
+
+con.close()
+
+
+
+
+
